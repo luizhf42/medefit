@@ -1,0 +1,40 @@
+<template>
+	<label>
+		<input type="radio" name="gender" :value="radioSex" :checked="radioSex == 'male'"/>
+		<div :class="radioSex">{{ radioSex[0].toUpperCase() }}</div>
+		</label
+	>
+
+</template>
+
+<script setup lang="ts">
+const { radioSex } = defineProps<{
+	radioSex: string;
+}>();
+</script>
+
+<style scoped lang="postcss">
+label {
+	@apply text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-center;
+
+	input {
+		@apply hidden;
+
+		&:not(:checked) + div {
+			@apply bg-transparent text-gray-900;
+		}
+	}
+
+	div {
+		@apply text-lg font-bold w-11 h-10 flex items-center justify-center text-white border border-gray-500;
+	
+	  &.female {
+			@apply bg-pink-600 rounded-r-md border-l-0;
+		}
+
+		&.male {
+			@apply bg-blue-600 rounded-l-md border-r-0;
+		}
+	}
+}
+</style>
