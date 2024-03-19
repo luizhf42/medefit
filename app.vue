@@ -4,12 +4,12 @@
 			<div class="grid gap-3">
 				<SexField />
 				<div class="flex flex-wrap justify-between">
-					<BodyMetricInput metric="Age" />
-					<BodyMetricInput metric="Weight" />
-					<BodyMetricInput metric="Height" />
-					<BodyMetricInput metric="Neck" />
-					<BodyMetricInput metric="Waist" />
-					<BodyMetricInput metric="Hip" />
+					<BodyMetricInput metric="Age" suffix="yrs"/>
+					<BodyMetricInput metric="Weight" suffix="kg" />
+					<BodyMetricInput metric="Height" suffix="cm" />
+					<BodyMetricInput metric="Neck" suffix="cm" />
+					<BodyMetricInput metric="Waist" suffix="cm" />
+					<BodyMetricInput metric="Hip" suffix="cm" />
 				</div>
 			</div>
 		</div>
