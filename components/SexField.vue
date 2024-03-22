@@ -1,6 +1,7 @@
 <template>
+	<div ></div>
 	<fieldset>
-		<legend>Gender</legend>
+		<legend>Sex</legend>
 		<div class="wrapper">
 			<SexInput radioSex="male" />
 			<SexInput radioSex="female" />
@@ -12,7 +13,11 @@
 
 <style scoped lang="postcss">
 fieldset {
-	@apply border border-gray-200 dark:border-gray-800 rounded-lg p-2;
+	@apply p-2;
+
+	legend {
+		@apply text-center text-sm font-medium;
+	}
 
 	.wrapper {
 		@apply flex justify-center items-center;

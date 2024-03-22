@@ -1,10 +1,13 @@
 <template>
 	<label>
-		<input type="radio" name="gender" :value="radioSex" :checked="radioSex == 'male'"/>
-		<div :class="radioSex">{{ radioSex[0].toUpperCase() }}</div>
-		</label
-	>
-
+		<input
+			type="radio"
+			name="gender"
+			:value="radioSex"
+			:checked="radioSex == 'male'"
+		/>
+		<div :class="radioSex">{{ radioSex }}</div>
+	</label>
 </template>
 
 <script setup lang="ts">
@@ -26,9 +29,9 @@ label {
 	}
 
 	div {
-		@apply text-lg font-bold w-11 h-10 flex items-center justify-center text-white border border-gray-500;
-	
-	  &.female {
+		@apply transition-colors capitalize text-lg font-bold w-20 h-10 flex items-center justify-center text-white border border-gray-500;
+
+		&.female {
 			@apply bg-pink-600 rounded-r-md border-l-0;
 		}
 
