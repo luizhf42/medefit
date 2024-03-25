@@ -2,7 +2,7 @@
 	<label
 		><span class="metric">{{ metric }}</span>
 		<div>
-			<input type="text" inputmode="decimal" :placeholder="metric" />
+			<input type="text" inputmode="decimal" />
 			<span>{{ suffix }}</span>
 		</div></label
 	>
@@ -17,7 +17,7 @@ const { metric, suffix } = defineProps<{
 
 <style scoped lang="postcss">
 label {
-	@apply text-sm font-medium w-[45%] mb-3;
+	@apply text-sm font-medium w-4/5 mx-auto xs:w-[45%] mb-4;
 
 	.metric {
 		@apply py-2 px-1;

@@ -1,4 +1,4 @@
-const plugin = require('tailwindcss/plugin')
+const plugin = require("tailwindcss/plugin");
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -11,15 +11,19 @@ export default {
 		"./error.vue",
 	],
 	theme: {
-		extend: {},
+		extend: {
+			screens: {
+				xs: "460px",
+			},
+		},
 	},
 	// plugins: [
-  //   plugin(function({ addComponents }) {
-  //     addComponents({
+	//   plugin(function({ addComponents }) {
+	//     addComponents({
 	// 			".default-label": {
 
 	// 			}
 	// 		})
-  //   })
-  // ]
+	//   })
+	// ]
 };
