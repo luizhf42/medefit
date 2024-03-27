@@ -29,7 +29,7 @@ const isInputValid = computed(() => {
 });
 
 const updateLocalStorage = () => {
-	if (isInputValid) {
+	if (isInputValid.value) {
 		const userInputs = JSON.parse(localStorage.getItem("user-inputs") ?? "{}");
 		const updatedUserInputs = {
 			...userInputs,
