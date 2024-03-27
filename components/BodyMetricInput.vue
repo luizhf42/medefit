@@ -29,13 +29,14 @@ const isInputValid = computed(() => {
 });
 
 const updateLocalStorage = () => {
-	const userInputs = JSON.parse(localStorage.getItem("user-inputs") ?? "{}");
-	const updatedUserInputs = {
-		...userInputs,
-		[metric.toLowerCase()]: input.value,
-	};
-	if (isInputValid)
+	if (isInputValid) {
+		const userInputs = JSON.parse(localStorage.getItem("user-inputs") ?? "{}");
+		const updatedUserInputs = {
+			...userInputs,
+			[metric.toLowerCase()]: input.value,
+		};
 		localStorage.setItem("user-inputs", JSON.stringify(updatedUserInputs));
+	}
 };
 </script>
 
