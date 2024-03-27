@@ -5,6 +5,7 @@
 			name="gender"
 			:value="radioSex"
 			:checked="radioSex == 'male'"
+			@change="updateLocalStorage"
 		/>
 		<div :class="radioSex">{{ radioSex }}</div>
 	</label>
@@ -14,6 +15,15 @@
 const { radioSex } = defineProps<{
 	radioSex: string;
 }>();
+
+const updateLocalStorage = () => {
+	const userInputs = JSON.parse(localStorage.getItem("user-inputs") ?? "{}");
+	const updatedUserInputs = {
+		...userInputs,
+		sex: radioSex,
+	};
+	localStorage.setItem("user-inputs", JSON.stringify(updatedUserInputs));
+};
 </script>
 
 <style scoped lang="postcss">
