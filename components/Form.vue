@@ -2,19 +2,17 @@
   <form>
 		<SexField />
 		<div>
-			<BodyMetricInput metric="Age" suffix="yrs" />
 			<BodyMetricInput metric="Weight" suffix="kg" />
 			<BodyMetricInput metric="Height" suffix="cm" />
 			<BodyMetricInput metric="Neck" suffix="cm" />
 			<BodyMetricInput metric="Waist" suffix="cm" />
 			<BodyMetricInput metric="Hip" suffix="cm" />
 		</div>
-		<button>Calculate</button>
+		<button @click.prevent="$emit('calculate')">Calculate</button>
 	</form>
 </template>
 
 <script setup lang="ts">
-// const calculate 
 </script>
 
 <style scoped lang="postcss">
