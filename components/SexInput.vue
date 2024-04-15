@@ -12,8 +12,9 @@
 </template>
 
 <script setup lang="ts">
+import type { Sex } from "~/models/userInputs";
 const { radioSex } = defineProps<{
-	radioSex: string;
+	radioSex: Sex;
 }>();
 
 const updateLocalStorage = () => {
