@@ -42,7 +42,7 @@ const updateLocalStorage = () => {
 
 <style scoped lang="postcss">
 label {
-	@apply text-sm font-medium w-4/5 mx-auto xs:w-[45%] mb-4;
+	@apply text-sm font-medium w-4/5 mx-auto mb-4;
 
 	.metric {
 		@apply py-2 px-1;

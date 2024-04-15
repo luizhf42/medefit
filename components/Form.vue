@@ -1,5 +1,5 @@
 <template>
-  <form>
+	<form>
 		<SexField />
 		<div>
 			<BodyMetricInput metric="Weight" suffix="kg" />
@@ -12,15 +12,14 @@
 	</form>
 </template>
 
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <style scoped lang="postcss">
 form {
 	@apply bg-white rounded-lg mx-auto border shadow w-11/12 max-w-lg grid gap-3 p-6;
 
 	div {
-		@apply flex flex-col xs:flex-row flex-wrap justify-between;
+		@apply grid grid-cols-2 grid-rows-3 gap-0;
 	}
 
 	button {
