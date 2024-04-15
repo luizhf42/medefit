@@ -4,7 +4,7 @@
 			type="radio"
 			name="gender"
 			:value="radioSex"
-			:checked="radioSex == 'male'"
+			:checked="checked"
 			@change="updateLocalStorage"
 		/>
 		<div :class="radioSex">{{ radioSex }}</div>
@@ -16,6 +16,21 @@ import type { Sex } from "~/models/userInputs";
 const { radioSex } = defineProps<{
 	radioSex: Sex;
 }>();
+
+const checked = ref<boolean>(radioSex == "male");
+
+onMounted(() => {
+	const userInputs = JSON.parse(localStorage.getItem("user-inputs") ?? "{}");
+	if (!userInputs.sex) {
+		const updatedUserInputs = {
+			...userInputs,
+			sex: "male",
+		};
+		localStorage.setItem("user-inputs", JSON.stringify(updatedUserInputs));
+	} else {
+		checked.value = radioSex === userInputs.sex;
+	}
+});
 
 const updateLocalStorage = () => {
 	const userInputs = JSON.parse(localStorage.getItem("user-inputs") ?? "{}");
