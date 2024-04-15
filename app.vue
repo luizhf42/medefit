@@ -25,18 +25,22 @@ const calculateBodyFat = (userInputs: UserInputs) => {
 
 const calculateMaleBodyFat = (userInputs: UserInputs) => {
 	const bodyFat =
-		(86.01 * Math.log10(userInputs.waist - userInputs.neck) -
-			70.041 * Math.log10(userInputs.height) +
-			36.76);
+		495 /
+			(1.0324 -
+				0.19077 * Math.log10(userInputs.waist - userInputs.neck) +
+				0.15456 * Math.log10(userInputs.height)) -
+		450;
 
 	return bodyFat;
 };
 
 const calculateFemaleBodyFat = (userInputs: UserInputs) => {
 	const bodyFat =
-		(163.205 * Math.log10(userInputs.waist + userInputs.hip - userInputs.neck) -
-			97.684 * Math.log10(userInputs.height) -
-			78.387);
+		495 /
+			(1.29579 -
+				0.35004 * Math.log10(userInputs.waist + userInputs.hip - userInputs.neck) +
+				0.221 * Math.log10(userInputs.height)) -
+		450;
 	return bodyFat;
 };
 </script>
