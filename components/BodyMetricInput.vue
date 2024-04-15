@@ -21,6 +21,11 @@ const { metric, suffix } = defineProps<{
 	suffix: string;
 }>();
 
+onMounted(() => {
+	const userInputs = JSON.parse(localStorage.getItem("user-inputs") ?? "{}");
+	input.value = userInputs[metric.toLowerCase()] ?? "";
+});
+
 const input = ref<string>();
 const regex = /^\d*\,?\.?\d*$/;
 const isInputValid = computed(() => {
