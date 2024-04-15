@@ -21,11 +21,11 @@ const { metric, suffix } = defineProps<{
 	suffix: string;
 }>();
 
-const input = ref<number>();
-const regex = suffix === "yrs" ? /^[1-9]\d*$/ : /^\d*\,?\d*$/;
+const input = ref<string>();
+const regex = /^\d*\,?\.?\d*$/;
 const isInputValid = computed(() => {
 	if (!input.value) return true;
-	return regex.test(input.value.toString());
+	return regex.test(input.value);
 });
 
 const updateLocalStorage = () => {
@@ -33,7 +33,7 @@ const updateLocalStorage = () => {
 		const userInputs = JSON.parse(localStorage.getItem("user-inputs") ?? "{}");
 		const updatedUserInputs = {
 			...userInputs,
-			[metric.toLowerCase()]: input.value,
+			[metric.toLowerCase()]: Number(input.value?.replace(",", ".")),
 		};
 		localStorage.setItem("user-inputs", JSON.stringify(updatedUserInputs));
 	}
