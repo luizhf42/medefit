@@ -16,14 +16,14 @@
 
 <style scoped lang="postcss">
 form {
-	@apply bg-white rounded-lg mx-auto border shadow w-11/12 max-w-lg grid gap-3 p-6;
+	@apply default-wrapper max-w-lg grid gap-3 p-6;
 
 	div {
-		@apply grid grid-cols-2 grid-rows-3 gap-0;
+		@apply grid grid-cols-1 grid-rows-5 xs:grid-cols-2 xs:grid-rows-3 gap-0;
 	}
 
 	button {
-		@apply bg-blue-500 text-white font-semibold py-2 px-4 rounded-md;
+		@apply button;
 	}
 }
 </style>
