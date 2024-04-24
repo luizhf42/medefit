@@ -2,13 +2,13 @@
 	<form>
 		<SexField />
 		<div>
-			<BodyMetricInput metric="Weight" suffix="kg" />
-			<BodyMetricInput metric="Height" suffix="cm" />
-			<BodyMetricInput metric="Neck" suffix="cm" />
-			<BodyMetricInput metric="Waist" suffix="cm" />
-			<BodyMetricInput metric="Hip" suffix="cm" />
+			<BodyMetricInput metric="weight" suffix="kg" metricInPortuguese="Peso" />
+			<BodyMetricInput metric="height" suffix="cm" metricInPortuguese="Altura" />
+			<BodyMetricInput metric="neck" suffix="cm" metricInPortuguese="Pescoço" />
+			<BodyMetricInput metric="waist" suffix="cm" metricInPortuguese="Cintura" />
+			<BodyMetricInput metric="hip" suffix="cm" metricInPortuguese="Quadril" />
 		</div>
-		<button @click.prevent="$emit('calculate')">Calculate</button>
+		<button @click.prevent="$emit('calculate')">Calcular</button>
 	</form>
 </template>
 

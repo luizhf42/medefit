@@ -1,6 +1,6 @@
 <template>
 	<label
-		><span class="metric">{{ metric }}</span>
+		><span class="metric">{{ metricInPortuguese }}</span>
 		<div>
 			<input
 				type="text"
@@ -16,8 +16,9 @@
 </template>
 
 <script setup lang="ts">
-const { metric, suffix } = defineProps<{
+const { metric, metricInPortuguese, suffix } = defineProps<{
 	metric: string;
+	metricInPortuguese: string;
 	suffix: string;
 }>();
 

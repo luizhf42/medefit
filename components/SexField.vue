@@ -1,10 +1,10 @@
 <template>
 	<div ></div>
 	<fieldset>
-		<legend>Sex</legend>
+		<legend>Sexo</legend>
 		<div class="wrapper">
-			<SexInput radioSex="male" />
-			<SexInput radioSex="female" />
+			<SexInput radioSex="male" sexInPortuguese="Masculino" />
+			<SexInput radioSex="female" sexInPortuguese="Feminino" />
 		</div>
 	</fieldset>
 </template>

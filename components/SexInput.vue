@@ -7,14 +7,15 @@
 			:checked="checked"
 			@change="updateLocalStorage"
 		/>
-		<div :class="radioSex">{{ radioSex }}</div>
+		<div :class="radioSex">{{ sexInPortuguese }}</div>
 	</label>
 </template>
 
 <script setup lang="ts">
 import type { Sex } from "~/models/userInputs";
-const { radioSex } = defineProps<{
+const { radioSex, sexInPortuguese } = defineProps<{
 	radioSex: Sex;
+	sexInPortuguese: string;
 }>();
 
 const checked = ref<boolean>(radioSex == "male");
@@ -55,7 +56,7 @@ label {
 	}
 
 	div {
-		@apply transition-colors capitalize text-lg font-bold w-20 h-10 flex items-center justify-center text-white border border-gray-500;
+		@apply transition-colors capitalize text-lg font-bold w-32 h-10 flex items-center justify-center text-white border border-gray-500;
 
 		&.female {
 			@apply bg-pink-600 rounded-r-md border-l-0;
