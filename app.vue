@@ -1,15 +1,17 @@
 <template>
-	<Form @calculate="calculateResults" />
-	<Result :bmi="bmi!" :body-fat="bodyFat!" v-if="bmi && bodyFat" />
+	<Result @reset="reset" :bmi="bmi!" :body-fat="bodyFat!" :sex="sex!" v-if="bmi && bodyFat" />
+	<Form @calculate="calculateResults" v-else />
 </template>
 
 <script setup lang="ts">
-import type { UserInputs } from "./models/userInputs";
+import type { Sex, UserInputs } from "./models/userInputs";
 const bmi = ref<number>();
 const bodyFat = ref<number>();
+const sex = ref<Sex>();
 
 const calculateResults = () => {
 	const userInputs = JSON.parse(localStorage.getItem("user-inputs")!);
+	sex.value = userInputs.sex;
 	bmi.value = calculateBmi(userInputs.weight, userInputs.height);
 	bodyFat.value = calculateBodyFat(userInputs);
 };
@@ -38,11 +40,17 @@ const calculateFemaleBodyFat = (userInputs: UserInputs) => {
 	const bodyFat =
 		495 /
 			(1.29579 -
-				0.35004 * Math.log10(userInputs.waist + userInputs.hip - userInputs.neck) +
+				0.35004 *
+					Math.log10(userInputs.waist + userInputs.hip - userInputs.neck) +
 				0.221 * Math.log10(userInputs.height)) -
 		450;
 	return bodyFat;
 };
+
+const reset = () => {
+	bmi.value = undefined;
+	bodyFat.value = undefined;
+}
 </script>
 
 <style scoped lang="postcss"></style>

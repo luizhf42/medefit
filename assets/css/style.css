@@ -4,4 +4,8 @@
 
 body {
 	@apply min-h-screen bg-gray-200 flex items-center justify-center py-4;
+
+	#__nuxt {
+		@apply w-full;
+	}
 }
