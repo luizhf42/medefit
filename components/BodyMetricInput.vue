@@ -27,7 +27,7 @@ onMounted(() => {
 });
 
 const input = ref<string>();
-const regex = /^\d*\,?\.?\d*$/;
+const regex = /^\d*([\.,]?\d*)?$/;
 const isInputValid = computed(() => {
 	if (!input.value) return true;
 	return regex.test(input.value);
