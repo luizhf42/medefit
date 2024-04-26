@@ -40,6 +40,13 @@ export default defineNuxtConfig({
 					href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap",
 				},
 			],
+			script: [
+				{
+					async: true,
+					src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9387011392687218",
+					crossorigin: "anonymous",
+				},
+			],
 		},
 	},
 });
