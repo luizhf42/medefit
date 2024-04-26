@@ -66,6 +66,10 @@ div {
 
 	p {
 		@apply text-xl mt-1;
+
+		span {
+			@apply font-bold;
+		}
 	}
 
 	button {
