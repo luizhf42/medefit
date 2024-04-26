@@ -7,7 +7,9 @@
 				inputmode="decimal"
 				v-model="input"
 				@keyup="updateLocalStorage"
-				:class="{ 'invalid-input focus-visible:outline-red-600': !isInputValid }"
+				:class="{
+					'invalid-input focus-visible:outline-red-600': !isInputValid,
+				}"
 			/>
 			<span :class="{ 'invalid-input': !isInputValid }">{{ suffix }}</span>
 		</div></label
@@ -24,8 +26,10 @@ const { metric, metricInPortuguese, suffix } = defineProps<{
 const emit = defineEmits(["update"]);
 
 onMounted(() => {
-	const userInputs = JSON.parse(localStorage.getItem("user-inputs") ?? "{}");
-	input.value = userInputs[metric.toLowerCase()] ?? "";
+	if (process.client) {
+		const userInputs = JSON.parse(localStorage.getItem("user-inputs") ?? "{}");
+		input.value = userInputs[metric.toLowerCase()] ?? "";
+	}
 });
 
 const input = ref<string>();
@@ -36,14 +40,16 @@ const isInputValid = computed(() => {
 });
 
 const updateLocalStorage = () => {
-	const userInputs = JSON.parse(localStorage.getItem("user-inputs") ?? "{}");
-	const updatedUserInputs = {
-		...userInputs,
-		areInputsValid: isInputValid.value,
-		[metric.toLowerCase()]: Number(input.value?.replace(",", ".")),
-	};
-	localStorage.setItem("user-inputs", JSON.stringify(updatedUserInputs));
-	emit("update");
+	if (process.client) {
+		const userInputs = JSON.parse(localStorage.getItem("user-inputs") ?? "{}");
+		const updatedUserInputs = {
+			...userInputs,
+			areInputsValid: isInputValid.value,
+			[metric.toLowerCase()]: Number(input.value?.replace(",", ".")),
+		};
+		localStorage.setItem("user-inputs", JSON.stringify(updatedUserInputs));
+		emit("update");
+	}
 };
 </script>
 

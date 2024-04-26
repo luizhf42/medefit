@@ -18,14 +18,16 @@ const waistHipRatio = ref<number>();
 const sex = ref<Sex>();
 
 const calculateResults = () => {
-	const userInputs = JSON.parse(localStorage.getItem("user-inputs")!);
-	sex.value = userInputs.sex;
-	bmi.value = calculateBmi(userInputs.weight, userInputs.height);
-	bodyFat.value = calculateBodyFat(userInputs);
-	waistHipRatio.value = calculateWaistHipRatio(
-		userInputs.waist,
-		userInputs.hip
-	);
+	if (process.client) {
+		const userInputs = JSON.parse(localStorage.getItem("user-inputs")!);
+		sex.value = userInputs.sex;
+		bmi.value = calculateBmi(userInputs.weight, userInputs.height);
+		bodyFat.value = calculateBodyFat(userInputs);
+		waistHipRatio.value = calculateWaistHipRatio(
+			userInputs.waist,
+			userInputs.hip
+		);
+	}
 };
 
 const calculateBmi = (weight: number, height: number) =>

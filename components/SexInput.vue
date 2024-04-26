@@ -21,25 +21,27 @@ const { radioSex, sexInPortuguese } = defineProps<{
 const checked = ref<boolean>(radioSex == "male");
 
 onMounted(() => {
-	const userInputs = JSON.parse(localStorage.getItem("user-inputs") ?? "{}");
-	if (!userInputs.sex) {
-		const updatedUserInputs = {
-			...userInputs,
-			sex: "male",
-		};
-		localStorage.setItem("user-inputs", JSON.stringify(updatedUserInputs));
-	} else {
-		checked.value = radioSex === userInputs.sex;
+	if (process.client) {
+		const userInputs = JSON.parse(localStorage.getItem("user-inputs") ?? "{}");
+		if (!userInputs.sex) {
+			const updatedUserInputs = {
+				...userInputs,
+				sex: "male",
+			};
+			localStorage.setItem("user-inputs", JSON.stringify(updatedUserInputs));
+		} else {
+			checked.value = radioSex === userInputs.sex;
+		}
 	}
 });
 
 const updateLocalStorage = () => {
-	const userInputs = JSON.parse(localStorage.getItem("user-inputs") ?? "{}");
+	if (process.client){const userInputs = JSON.parse(localStorage.getItem("user-inputs") ?? "{}");
 	const updatedUserInputs = {
 		...userInputs,
 		sex: radioSex,
 	};
-	localStorage.setItem("user-inputs", JSON.stringify(updatedUserInputs));
+	localStorage.setItem("user-inputs", JSON.stringify(updatedUserInputs));}
 };
 </script>
 

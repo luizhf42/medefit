@@ -43,8 +43,10 @@
 const areInputsValid = ref<Boolean>(false);
 
 const getAreInputsValid = () => {
-	const userInputs = JSON.parse(localStorage.getItem("user-inputs") ?? "{}");
-	areInputsValid.value = userInputs.areInputsValid;
+	if (process.client) {
+		const userInputs = JSON.parse(localStorage.getItem("user-inputs") ?? "{}");
+		areInputsValid.value = userInputs.areInputsValid;
+	}
 };
 
 onMounted(() => {
