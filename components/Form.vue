@@ -2,17 +2,55 @@
 	<form>
 		<SexField />
 		<div>
-			<BodyMetricInput metric="weight" suffix="kg" metricInPortuguese="Peso" />
-			<BodyMetricInput metric="height" suffix="cm" metricInPortuguese="Altura" />
-			<BodyMetricInput metric="neck" suffix="cm" metricInPortuguese="Pescoço" />
-			<BodyMetricInput metric="waist" suffix="cm" metricInPortuguese="Cintura" />
-			<BodyMetricInput metric="hip" suffix="cm" metricInPortuguese="Quadril" />
+			<BodyMetricInput
+				@update="getAreInputsValid"
+				metric="weight"
+				suffix="kg"
+				metricInPortuguese="Peso"
+			/>
+			<BodyMetricInput
+				@update="getAreInputsValid"
+				metric="height"
+				suffix="cm"
+				metricInPortuguese="Altura"
+			/>
+			<BodyMetricInput
+				@update="getAreInputsValid"
+				metric="neck"
+				suffix="cm"
+				metricInPortuguese="Pescoço"
+			/>
+			<BodyMetricInput
+				@update="getAreInputsValid"
+				metric="waist"
+				suffix="cm"
+				metricInPortuguese="Cintura"
+			/>
+			<BodyMetricInput
+				@update="getAreInputsValid"
+				metric="hip"
+				suffix="cm"
+				metricInPortuguese="Quadril"
+			/>
 		</div>
-		<button @click.prevent="$emit('calculate')">Calcular</button>
+		<button :disabled="!areInputsValid" @click.prevent="$emit('calculate')">
+			Calcular
+		</button>
 	</form>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const areInputsValid = ref<Boolean>(false);
+
+const getAreInputsValid = () => {
+	const userInputs = JSON.parse(localStorage.getItem("user-inputs") ?? "{}");
+	areInputsValid.value = userInputs.areInputsValid;
+};
+
+onMounted(() => {
+	getAreInputsValid();
+});
+</script>
 
 <style scoped lang="postcss">
 form {
@@ -23,7 +61,7 @@ form {
 	}
 
 	button {
-		@apply button;
+		@apply button disabled:cursor-not-allowed disabled:opacity-70 transition-all;
 	}
 }
 </style>

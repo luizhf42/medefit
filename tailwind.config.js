@@ -37,6 +37,12 @@ export default {
 					padding: "8px 16px",
 					"border-radius": "0.375rem",
 				},
+				".invalid-input": {
+					"border-color": "#cc2626",
+					"outline-color": "#cc2626",
+					color: "#cc2626",
+					transition: "all 150ms"
+				},
 			});
 		}),
 	],

@@ -7,10 +7,9 @@
 				inputmode="decimal"
 				v-model="input"
 				@keyup="updateLocalStorage"
+				:class="{ 'invalid-input focus-visible:outline-red-600': !isInputValid }"
 			/>
-			<span :class="isInputValid ? 'text-black' : 'text-red-600'">{{
-				suffix
-			}}</span>
+			<span :class="{ 'invalid-input': !isInputValid }">{{ suffix }}</span>
 		</div></label
 	>
 </template>
@@ -21,6 +20,8 @@ const { metric, metricInPortuguese, suffix } = defineProps<{
 	metricInPortuguese: string;
 	suffix: string;
 }>();
+
+const emit = defineEmits(["update"]);
 
 onMounted(() => {
 	const userInputs = JSON.parse(localStorage.getItem("user-inputs") ?? "{}");
@@ -35,14 +36,14 @@ const isInputValid = computed(() => {
 });
 
 const updateLocalStorage = () => {
-	if (isInputValid.value) {
-		const userInputs = JSON.parse(localStorage.getItem("user-inputs") ?? "{}");
-		const updatedUserInputs = {
-			...userInputs,
-			[metric.toLowerCase()]: Number(input.value?.replace(",", ".")),
-		};
-		localStorage.setItem("user-inputs", JSON.stringify(updatedUserInputs));
-	}
+	const userInputs = JSON.parse(localStorage.getItem("user-inputs") ?? "{}");
+	const updatedUserInputs = {
+		...userInputs,
+		areInputsValid: isInputValid.value,
+		[metric.toLowerCase()]: Number(input.value?.replace(",", ".")),
+	};
+	localStorage.setItem("user-inputs", JSON.stringify(updatedUserInputs));
+	emit("update");
 };
 </script>
 
@@ -58,11 +59,11 @@ label {
 		@apply flex items-center;
 
 		input {
-			@apply flex h-10 w-full rounded-md border px-3 py-2 pr-9 text-sm;
+			@apply flex h-10 w-full rounded-md border px-3 py-2 pr-9 text-sm transition-all;
 		}
 
 		span {
-			@apply ml-[-32px] text-right;
+			@apply ml-[-32px] text-right transition-all;
 		}
 	}
 }
