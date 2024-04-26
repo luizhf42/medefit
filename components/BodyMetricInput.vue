@@ -44,7 +44,9 @@ const updateLocalStorage = () => {
 		const userInputs = JSON.parse(localStorage.getItem("user-inputs") ?? "{}");
 		const updatedUserInputs = {
 			...userInputs,
-			areInputsValid: isInputValid.value,
+			areInputsValid: Object.values(userInputs).every(
+				(value) => value !== null
+			),
 			[metric.toLowerCase()]: Number(input.value?.replace(",", ".")),
 		};
 		localStorage.setItem("user-inputs", JSON.stringify(updatedUserInputs));
