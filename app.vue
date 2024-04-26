@@ -1,5 +1,12 @@
 <template>
-	<Result @reset="reset" :bmi="bmi!" :body-fat="bodyFat!" :sex="sex!" v-if="bmi && bodyFat" />
+	<Result
+		@reset="reset"
+		:bmi="bmi!"
+		:body-fat="bodyFat!"
+		:waist-hip-ratio="waistHipRatio!"
+		:sex="sex!"
+		v-if="bmi && bodyFat"
+	/>
 	<Form @calculate="calculateResults" v-else />
 </template>
 
@@ -7,6 +14,7 @@
 import type { Sex, UserInputs } from "./models/userInputs";
 const bmi = ref<number>();
 const bodyFat = ref<number>();
+const waistHipRatio = ref<number>();
 const sex = ref<Sex>();
 
 const calculateResults = () => {
@@ -14,10 +22,16 @@ const calculateResults = () => {
 	sex.value = userInputs.sex;
 	bmi.value = calculateBmi(userInputs.weight, userInputs.height);
 	bodyFat.value = calculateBodyFat(userInputs);
+	waistHipRatio.value = calculateWaistHipRatio(
+		userInputs.waist,
+		userInputs.hip
+	);
 };
 
 const calculateBmi = (weight: number, height: number) =>
 	weight / Math.pow(height / 100, 2);
+
+const calculateWaistHipRatio = (waist: number, hip: number) => waist / hip;
 
 const calculateBodyFat = (userInputs: UserInputs) => {
 	return userInputs.sex === "male"
@@ -50,7 +64,8 @@ const calculateFemaleBodyFat = (userInputs: UserInputs) => {
 const reset = () => {
 	bmi.value = undefined;
 	bodyFat.value = undefined;
-}
+	waistHipRatio.value = undefined;
+};
 </script>
 
 <style scoped lang="postcss"></style>
