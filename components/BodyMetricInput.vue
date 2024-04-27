@@ -6,7 +6,7 @@
 				type="text"
 				inputmode="decimal"
 				v-model="input"
-				@keyup="updateLocalStorage"
+				@keypress="updateLocalStorage"
 				:class="{
 					'invalid-input focus-visible:outline-red-600': !isInputValid,
 				}"
@@ -41,14 +41,17 @@ const isInputValid = computed(() => {
 
 const updateLocalStorage = () => {
 	if (process.client) {
+		const inputValue = Number(input.value?.replace(",", "."));
 		const userInputs = JSON.parse(localStorage.getItem("user-inputs") ?? "{}");
+
 		const updatedUserInputs = {
 			...userInputs,
-			areInputsValid: Object.values(userInputs).every(
-				(value) => value !== null
-			),
-			[metric.toLowerCase()]: Number(input.value?.replace(",", ".")),
+			[metric]: inputValue > 0 ? inputValue : null,
 		};
+		updatedUserInputs.areInputsValid = Object.values(updatedUserInputs).every(
+			(value) => value !== null && !Number.isNaN(value)
+		);
+
 		localStorage.setItem("user-inputs", JSON.stringify(updatedUserInputs));
 		emit("update");
 	}
