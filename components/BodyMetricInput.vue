@@ -6,7 +6,7 @@
 				type="text"
 				inputmode="decimal"
 				v-model="input"
-				@keypress="updateLocalStorage"
+				@input="updateLocalStorage"
 				:class="{
 					'invalid-input focus-visible:outline-red-600': !isInputValid,
 				}"
