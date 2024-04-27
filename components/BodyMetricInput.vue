@@ -6,7 +6,7 @@
 				type="text"
 				inputmode="decimal"
 				v-model="input"
-				@input="updateLocalStorage"
+				@keyup="updateLocalStorage"
 				:class="{
 					'invalid-input focus-visible:outline-red-600': !isInputValid,
 				}"
@@ -28,7 +28,7 @@ const emit = defineEmits(["update"]);
 onMounted(() => {
 	if (process.client) {
 		const userInputs = JSON.parse(localStorage.getItem("user-inputs") ?? "{}");
-		input.value = userInputs[metric.toLowerCase()] ?? "";
+		input.value = userInputs[metric].toString() ?? "";
 	}
 });
 
