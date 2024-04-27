@@ -28,7 +28,8 @@ const emit = defineEmits(["update"]);
 onMounted(() => {
 	if (process.client) {
 		const userInputs = JSON.parse(localStorage.getItem("user-inputs") ?? "{}");
-		input.value = userInputs[metric].toString() ?? "";
+		const savedValue = userInputs[metric]?.toString();
+		input.value = savedValue > 0 ? savedValue : "";
 	}
 });
 
@@ -46,7 +47,7 @@ const updateLocalStorage = () => {
 
 		const updatedUserInputs = {
 			...userInputs,
-			[metric]: inputValue > 0 ? inputValue : null,
+			[metric]: inputValue,
 		};
 		updatedUserInputs.areInputsValid = Object.values(updatedUserInputs).every(
 			(value) => value !== null && !Number.isNaN(value)

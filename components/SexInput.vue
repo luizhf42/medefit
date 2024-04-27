@@ -23,25 +23,19 @@ const checked = ref<boolean>(radioSex == "male");
 onMounted(() => {
 	if (process.client) {
 		const userInputs = JSON.parse(localStorage.getItem("user-inputs") ?? "{}");
-		if (!userInputs.sex) {
-			const updatedUserInputs = {
-				...userInputs,
-				sex: "male",
-			};
-			localStorage.setItem("user-inputs", JSON.stringify(updatedUserInputs));
-		} else {
-			checked.value = radioSex === userInputs.sex;
-		}
+		checked.value = radioSex === userInputs.sex;
 	}
 });
 
 const updateLocalStorage = () => {
-	if (process.client){const userInputs = JSON.parse(localStorage.getItem("user-inputs") ?? "{}");
-	const updatedUserInputs = {
-		...userInputs,
-		sex: radioSex,
-	};
-	localStorage.setItem("user-inputs", JSON.stringify(updatedUserInputs));}
+	if (process.client) {
+		const userInputs = JSON.parse(localStorage.getItem("user-inputs") ?? "{}");
+		const updatedUserInputs = {
+			...userInputs,
+			sex: radioSex,
+		};
+		localStorage.setItem("user-inputs", JSON.stringify(updatedUserInputs));
+	}
 };
 </script>
 

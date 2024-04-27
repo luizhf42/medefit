@@ -17,6 +17,23 @@ const bodyFat = ref<number>();
 const waistHipRatio = ref<number>();
 const sex = ref<Sex>();
 
+onBeforeMount(() => {
+	if (process.client) {
+		if (!localStorage.getItem("user-inputs")) {
+			const userInputs: UserInputs = {
+				areInputsValid: false,
+				height: 0,
+				hip: 0,
+				neck: 0,
+				sex: "male",
+				waist: 0,
+				weight: 0,
+			};
+			localStorage.setItem("user-inputs", JSON.stringify(userInputs));
+		}
+	}
+});
+
 const calculateResults = () => {
 	if (process.client) {
 		const userInputs = JSON.parse(localStorage.getItem("user-inputs")!);
